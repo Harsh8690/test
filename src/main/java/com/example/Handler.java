@@ -74,7 +74,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     return responseEvent;
                 }
 
-                if (event.getPath().startsWith("/user/all")) {
+                else if (event.getPath().startsWith("/user/all")) {
                     responseEvent.setStatusCode(200);
                     responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK");
@@ -83,7 +83,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     return responseEvent;
                 }
 
-                if (event.getPath().startsWith("/response/product")) {
+                else if (event.getPath().startsWith("/response/product")) {
                     responseEvent.setStatusCode(200);
                     responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK ");
