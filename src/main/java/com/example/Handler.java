@@ -70,6 +70,12 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     responseEvent.setBody(gson.toJson(userService.getData()));
                     return responseEvent;
                 }
+
+                if (event.getPath().startsWith("/response/product")){
+                    responseEvent.setStatusCode(200);
+                    responseEvent.setBody(gson.toJson(userService.allResponse()));
+                    return responseEvent;
+                }
             }
             case "PUT": {
 

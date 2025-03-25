@@ -2,11 +2,13 @@ package com.example.repo;
 
 import com.example.confi.DB;
 import com.example.entity.ProductDetails;
+import com.example.entity.ResponseData;
 import com.example.entity.UserDetails;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class DatabaseSchema {
     Connection con;
@@ -102,6 +104,24 @@ public class DatabaseSchema {
         }
 
         return getAllProduct;
+    }
+
+    public List<ResponseData> responseData(){
+        List<ResponseData> response=new ArrayList<>();
+        String q="select id, name, product_name from user left join products on user.id=products.product_id";
+        try {
+            PreparedStatement ps=con.prepareStatement(q);
+            ResultSet rs=ps.executeQuery();
+            while (rs.next()){
+
+                response.add(new ResponseData(rs.getInt(1), rs.getString(2),rs.getString(3) ));
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return response;
     }
 
 }

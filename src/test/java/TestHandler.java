@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 public class TestHandler {
     private UserService userService;
     private ProductService productService;
-
     @Test
     public void post() {
         ApplicationLoadBalancerRequestEvent requestEvent = new ApplicationLoadBalancerRequestEvent();
@@ -70,6 +69,16 @@ public class TestHandler {
         requestEvent.setPath("/product/all");
         Handler handler = new Handler(productService);
         ApplicationLoadBalancerResponseEvent responseEvent = handler.handleRequest(requestEvent, null);
+        System.out.println(responseEvent);
+    }
+
+    @Test
+    public void getAllResponse(){
+        ApplicationLoadBalancerRequestEvent requestEvent=new ApplicationLoadBalancerRequestEvent();
+        requestEvent.setPath("/response/product");
+        requestEvent.setHttpMethod("GET");
+        Handler handler=new Handler(productService);
+        ApplicationLoadBalancerResponseEvent responseEvent=handler.handleRequest(requestEvent,null);
         System.out.println(responseEvent);
     }
 
