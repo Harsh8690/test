@@ -44,6 +44,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
 
                     ProductDetails productDetails = gson.fromJson(event.getBody(), ProductDetails.class);
                     responseEvent.setStatusCode(200);
+                    responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK");
                     responseEvent.setBody("{" +
                             "}");
@@ -54,6 +55,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
 
                     UserDetails user = gson.fromJson(event.getBody(), UserDetails.class);
                     responseEvent.setStatusCode(200);
+                    responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK");
                     responseEvent.setBody("{" +
                             "}");
@@ -65,6 +67,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                 Gson gson = new Gson();
                 if (event.getPath().startsWith("/product/all")) {
                     responseEvent.setStatusCode(200);
+                    responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK");
                     responseEvent.setHeaders(Map.of("Content-Type ", " text/plain;"));
                     responseEvent.setBody(gson.toJson(productService.getProducts()));
@@ -73,6 +76,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
 
                 if (event.getPath().startsWith("/user/all")) {
                     responseEvent.setStatusCode(200);
+                    responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK");
                     responseEvent.setHeaders(Map.of("Content-Type ", " text/plain;"));
                     responseEvent.setBody(gson.toJson(userService.getData()));
@@ -81,6 +85,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
 
                 if (event.getPath().startsWith("/response/product")) {
                     responseEvent.setStatusCode(200);
+                    responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK ");
                     responseEvent.setHeaders(Map.of("Content-Type ", " text/plain;"));
                     responseEvent.setBody(gson.toJson(userService.allResponse()));
@@ -96,6 +101,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     Gson gson = new Gson();
                     UserDetails userDetails = gson.fromJson(event.getBody(), UserDetails.class);
                     responseEvent.setStatusCode(200);
+                    responseEvent.setIsBase64Encoded(true);
                     responseEvent.setStatusDescription("200 OK");
                     responseEvent.setBody("{" +
                             "}");
