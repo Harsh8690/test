@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.entity.response;
 
 public class ResponseData {
     private  int id;

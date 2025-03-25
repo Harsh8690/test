@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.entity.requset;
 
 public class ProductDetails {
     private int productId;

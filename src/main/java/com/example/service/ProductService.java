@@ -1,6 +1,6 @@
 package com.example.service;
 
-import com.example.entity.ProductDetails;
+import com.example.entity.requset.ProductDetails;
 import com.example.repo.DatabaseSchema;
 
 import java.util.List;

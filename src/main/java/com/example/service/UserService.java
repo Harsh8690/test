@@ -1,10 +1,8 @@
 package com.example.service;
 
-import com.example.entity.ProductDetails;
-import com.example.entity.ResponseData;
-import com.example.entity.UserDetails;
+import com.example.entity.response.ResponseData;
+import com.example.entity.requset.UserDetails;
 import com.example.repo.DatabaseSchema;
-import org.w3c.dom.ls.LSInput;
 
 import java.util.List;
 

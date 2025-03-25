@@ -1,14 +1,13 @@
 package com.example.repo;
 
 import com.example.confi.DB;
-import com.example.entity.ProductDetails;
-import com.example.entity.ResponseData;
-import com.example.entity.UserDetails;
+import com.example.entity.requset.ProductDetails;
+import com.example.entity.response.ResponseData;
+import com.example.entity.requset.UserDetails;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 public class DatabaseSchema {
     Connection con;
@@ -18,9 +17,7 @@ public class DatabaseSchema {
 
             con = DB.getCon();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
