@@ -1,4 +1,5 @@
 import com.amazonaws.services.lambda.runtime.events.ApplicationLoadBalancerRequestEvent;
+import com.amazonaws.services.lambda.runtime.events.ApplicationLoadBalancerResponseEvent;
 import com.example.Handler;
 import com.example.service.ProductService;
 import com.example.service.UserService;
@@ -20,7 +21,6 @@ public class TestHandler {
                 "}");
         Handler handler = new Handler(userService);
         handler.handleRequest(requestEvent, null);
-
     }
 
     @Test
@@ -29,9 +29,9 @@ public class TestHandler {
         requestEvent.setHttpMethod("GET");
         requestEvent.setPath("/user/all");
         Handler handler = new Handler(userService);
-        String s = handler.handleRequest(requestEvent, null);
+        ApplicationLoadBalancerResponseEvent responseEvent = handler.handleRequest(requestEvent, null);
 
-        System.out.println((s));
+        System.out.println(responseEvent);
     }
 
     @Test
@@ -41,13 +41,12 @@ public class TestHandler {
         requestEvent.setHttpMethod("PUT");
         requestEvent.setPath("/user/2");
         requestEvent.setBody("{\n" +
-                "  \"name\": \"harry\"\n" +
+                "  \"name\": \"Raman\"\n" +
                 "}");
 
         Handler handler = new Handler(userService);
-        String s = handler.handleRequest(requestEvent, null);
-        System.out.println(s);
-
+        ApplicationLoadBalancerResponseEvent responseEvent = handler.handleRequest(requestEvent, null);
+        System.out.println(responseEvent);
     }
 
     @Test
@@ -56,13 +55,12 @@ public class TestHandler {
         requestEvent.setPath("/product");
         requestEvent.setHttpMethod("POST");
         requestEvent.setBody("{\n" +
-                "  \"productId\": 6,\n" +
-                "  \"productName\": \"dell laptop\"\n" +
+                "  \"productId\": 5,\n" +
+                "  \"productName\": \"viva laptop\"\n" +
                 "}");
         Handler handler = new Handler(productService);
-        String s = handler.handleRequest(requestEvent, null);
-        System.out.println(s);
-
+        ApplicationLoadBalancerResponseEvent responseEvent = handler.handleRequest(requestEvent, null);
+        System.out.println(responseEvent);
     }
 
     @Test
@@ -71,8 +69,8 @@ public class TestHandler {
         requestEvent.setHttpMethod("GET");
         requestEvent.setPath("/product/all");
         Handler handler = new Handler(productService);
-        String s = handler.handleRequest(requestEvent, null);
-        System.out.println(s);
+        ApplicationLoadBalancerResponseEvent responseEvent = handler.handleRequest(requestEvent, null);
+        System.out.println(responseEvent);
     }
 
 }
