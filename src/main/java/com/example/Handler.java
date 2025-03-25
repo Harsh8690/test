@@ -73,6 +73,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
 
                 if (event.getPath().startsWith("/response/product")){
                     responseEvent.setStatusCode(200);
+                    responseEvent.setStatusDescription("200 OK");
                     responseEvent.setBody(gson.toJson(userService.allResponse()));
                     return responseEvent;
                 }
