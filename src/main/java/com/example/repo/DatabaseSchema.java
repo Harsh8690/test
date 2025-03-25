@@ -106,18 +106,18 @@ public class DatabaseSchema {
         return getAllProduct;
     }
 
-    public List<ResponseData> responseData(){
-        List<ResponseData> response=new ArrayList<>();
-        String q="select id, name, product_name from user left join products on user.id=products.product_id";
+    public List<ResponseData> responseData() {
+        List<ResponseData> response = new ArrayList<>();
+        String q = "select id, name, product_name from user left join products on user.id=products.product_id";
         try {
-            PreparedStatement ps=con.prepareStatement(q);
-            ResultSet rs=ps.executeQuery();
-            while (rs.next()){
+            PreparedStatement ps = con.prepareStatement(q);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
 
-                response.add(new ResponseData(rs.getInt(1), rs.getString(2),rs.getString(3) ));
+                response.add(new ResponseData(rs.getInt(1), rs.getString(2), rs.getString(3)));
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
