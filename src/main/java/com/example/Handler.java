@@ -45,6 +45,8 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     ProductDetails productDetails = gson.fromJson(event.getBody(), ProductDetails.class);
                     responseEvent.setStatusCode(200);
                     responseEvent.setStatusDescription("200 OK");
+                    responseEvent.setBody("{" +
+                            "}");
                     responseEvent.setHeaders(Map.of("data", productService.insertProduct(productDetails)));
                     return responseEvent;
 
@@ -53,6 +55,8 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     UserDetails user = gson.fromJson(event.getBody(), UserDetails.class);
                     responseEvent.setStatusCode(200);
                     responseEvent.setStatusDescription("200 OK");
+                    responseEvent.setBody("{" +
+                            "}");
                     responseEvent.setHeaders(Map.of("data", userService.insertData(user)));
                     return responseEvent;
                 }
@@ -93,6 +97,8 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     UserDetails userDetails = gson.fromJson(event.getBody(), UserDetails.class);
                     responseEvent.setStatusCode(200);
                     responseEvent.setStatusDescription("200 OK");
+                    responseEvent.setBody("{" +
+                            "}");
                     responseEvent.setHeaders(Map.of("data", userService.putData(id, userDetails.getName())));
                     return responseEvent;
                 }
