@@ -62,7 +62,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                 if (event.getPath().startsWith("/product/all")) {
                     responseEvent.setStatusCode(200);
                     responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setHeaders(Map.of("Content-Type :","text/plain;"));
+                    responseEvent.setHeaders(Map.of("Content-Type "," text/plain;"));
                     responseEvent.setBody(gson.toJson(productService.getProducts()));
                     return responseEvent;
                 }
@@ -70,7 +70,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                 if (event.getPath().startsWith("/user/all")) {
                     responseEvent.setStatusCode(200);
                     responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setHeaders(Map.of("Content-Type :","text/plain;"));
+                    responseEvent.setHeaders(Map.of("Content-Type "," text/plain;"));
                     responseEvent.setBody(gson.toJson(userService.getData()));
                     return responseEvent;
                 }
@@ -78,7 +78,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                 if (event.getPath().startsWith("/response/product")) {
                     responseEvent.setStatusCode(200);
                     responseEvent.setStatusDescription("200 OK ");
-                    responseEvent.setHeaders(Map.of("Content-Type :","text/plain;"));
+                    responseEvent.setHeaders(Map.of("Content-Type "," text/plain;"));
                     responseEvent.setBody(gson.toJson(userService.allResponse()));
                     return responseEvent;
                 }
