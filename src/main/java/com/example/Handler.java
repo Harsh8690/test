@@ -78,7 +78,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
             }
         }
 
-        return ResponseUtil.notFoundResponse("Request not found", 404, "404, NOT FOUND");
+        return ResponseUtil.notFoundResponse("METHOD NOT FOUND", 404, "404, NOT FOUND");
     }
 
 }
