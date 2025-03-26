@@ -41,7 +41,7 @@ public class TestHandler {
         requestEvent.setHttpMethod("PUT");
         requestEvent.setPath("/user/2");
         requestEvent.setBody("{\n" +
-                "  \"name\": \"Raman\"\n" +
+                "  \"name\": \"ram\"\n" +
                 "}");
 
         Handler handler = new Handler(userService);

@@ -42,12 +42,12 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                 if (event.getPath().startsWith("/product")) {
 
                     ProductDetails productDetails = gson.fromJson(event.getBody(), ProductDetails.class);
-                    return ResponseUtil.response("", 201, "201 OK", Map.of("data ", productService.insertProduct(productDetails)));
+                    return ResponseUtil.response("", 201, "201 CREATED", Map.of("DATA ", productService.insertProduct(productDetails)));
 
                 } else if (event.getPath().startsWith("/user")) {
 
                     UserDetails user = gson.fromJson(event.getBody(), UserDetails.class);
-                    return ResponseUtil.response("", 201, "201 OK", Map.of("data ", userService.insertData(user)));
+                    return ResponseUtil.response("", 201, "201 CREATED", Map.of("DATA ", userService.insertData(user)));
 
                 }
             }
@@ -72,7 +72,7 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     int id = Integer.parseInt(path.substring("/user/".length()));
                     Gson gson = new Gson();
                     UserDetails userDetails = gson.fromJson(event.getBody(), UserDetails.class);
-                    return ResponseUtil.response("", 201, "201 OK", Map.of("data ", userService.putData(id, userDetails.getName())));
+                    return ResponseUtil.response("", 201, "201 CREATED", Map.of("DATA ", userService.putData(id, userDetails.getName())));
 
                 }
             }
