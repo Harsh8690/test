@@ -9,6 +9,7 @@ import com.example.entity.requset.UserDetails;
 import com.example.repo.DatabaseSchema;
 import com.example.service.ProductService;
 import com.example.service.UserService;
+import com.example.utils.ResponseUtil;
 import com.google.gson.Gson;
 
 import java.util.Map;
@@ -32,8 +33,6 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
         userService = new UserService(repo);
         productService = new ProductService(repo);
 
-        ApplicationLoadBalancerResponseEvent responseEvent = new ApplicationLoadBalancerResponseEvent();
-
         switch (httpMethod) {
 
             case "POST": {
@@ -43,53 +42,26 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                 if (event.getPath().startsWith("/product")) {
 
                     ProductDetails productDetails = gson.fromJson(event.getBody(), ProductDetails.class);
-                    responseEvent.setStatusCode(200);
-                    responseEvent.setIsBase64Encoded(true);
-                    responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setBody("{" +
-                            "}");
-                    responseEvent.setHeaders(Map.of("data :", productService.insertProduct(productDetails)));
-                    return responseEvent;
+                    return ResponseUtil.response("", 200, "200 OK", Map.of("data ", productService.insertProduct(productDetails)));
 
                 } else if (event.getPath().startsWith("/user")) {
 
                     UserDetails user = gson.fromJson(event.getBody(), UserDetails.class);
-                    responseEvent.setStatusCode(200);
-                    responseEvent.setIsBase64Encoded(true);
-                    responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setBody("{" +
-                            "}");
-                    responseEvent.setHeaders(Map.of("data :", userService.insertData(user)));
-                    return responseEvent;
+                    return ResponseUtil.response("", 200, "200 OK", Map.of("data ", userService.insertData(user)));
+
                 }
             }
             case "GET": {
                 Gson gson = new Gson();
                 if (event.getPath().startsWith("/product/all")) {
-                    responseEvent.setStatusCode(200);
-                    responseEvent.setIsBase64Encoded(true);
-                    responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setHeaders(Map.of("Content-Type ", " text/plain;"));
-                    responseEvent.setBody(gson.toJson(productService.getProducts()));
-                    return responseEvent;
-                }
+                    return ResponseUtil.response(gson.toJson(productService.getProducts()), 200, "200 OK", Map.of("Content-Type ", " text/plain;"));
+                } else if (event.getPath().startsWith("/user/all")) {
 
-                else if (event.getPath().startsWith("/user/all")) {
-                    responseEvent.setStatusCode(200);
-                    responseEvent.setIsBase64Encoded(true);
-                    responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setHeaders(Map.of("Content-Type ", " text/plain;"));
-                    responseEvent.setBody(gson.toJson(userService.getData()));
-                    return responseEvent;
-                }
+                    return ResponseUtil.response(gson.toJson(userService.getData()), 200, "200 OK", Map.of("Content-Type ", " text/plain;"));
 
-                else if (event.getPath().startsWith("/response/product")) {
-                    responseEvent.setStatusCode(200);
-                    responseEvent.setIsBase64Encoded(true);
-                    responseEvent.setStatusDescription("200 OK ");
-                    responseEvent.setHeaders(Map.of("Content-Type ", " text/plain;"));
-                    responseEvent.setBody(gson.toJson(userService.allResponse()));
-                    return responseEvent;
+                } else if (event.getPath().startsWith("/response/product")) {
+
+                    return ResponseUtil.response(gson.toJson(userService.allResponse()), 200, "200 OK", Map.of("Content-Type ", " text/plain;"));
                 }
             }
             case "PUT": {
@@ -100,17 +72,13 @@ public class Handler implements RequestHandler<ApplicationLoadBalancerRequestEve
                     int id = Integer.parseInt(path.substring("/user/".length()));
                     Gson gson = new Gson();
                     UserDetails userDetails = gson.fromJson(event.getBody(), UserDetails.class);
-                    responseEvent.setStatusCode(200);
-                    responseEvent.setIsBase64Encoded(true);
-                    responseEvent.setStatusDescription("200 OK");
-                    responseEvent.setBody("{" +
-                            "}");
-                    responseEvent.setHeaders(Map.of("data :", userService.putData(id, userDetails.getName())));
-                    return responseEvent;
+                    return ResponseUtil.response("", 200, "200 OK", Map.of("data ", userService.putData(id, userDetails.getName())));
+
                 }
             }
         }
 
-        return responseEvent;
+        return ResponseUtil.notFoundResponse("Request not found", 404, "404, NOT FOUND");
     }
+
 }

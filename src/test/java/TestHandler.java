@@ -16,8 +16,8 @@ public class TestHandler {
         requestEvent.setHttpMethod("POST");
         requestEvent.setPath("/user");
         requestEvent.setBody("{\n" +
-                "  \"id\": 7,\n" +
-                "  \"name\": \"anuja\"\n" +
+                "  \"id\": 8,\n" +
+                "  \"name\": \"aman singh\"\n" +
                 "}");
         Handler handler = new Handler(userService);
         handler.handleRequest(requestEvent, null);
@@ -55,8 +55,8 @@ public class TestHandler {
         requestEvent.setPath("/product");
         requestEvent.setHttpMethod("POST");
         requestEvent.setBody("{\n" +
-                "  \"productId\": 5,\n" +
-                "  \"productName\": \"viva laptop\"\n" +
+                "  \"productId\": 7,\n" +
+                "  \"productName\": \"viva book laptop\"\n" +
                 "}");
         Handler handler = new Handler(productService);
         ApplicationLoadBalancerResponseEvent responseEvent = handler.handleRequest(requestEvent, null);

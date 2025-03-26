@@ -16,7 +16,7 @@ public class UserService {
 
     public String insertData(UserDetails user) {
         repo.post(user);
-        return "inserted";
+        return "inserted data in the user";
     }
 
     public List<UserDetails> getData() {
